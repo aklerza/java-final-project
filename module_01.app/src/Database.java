@@ -3,26 +3,24 @@ import java.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Database{
+	private List<Flight> flight = new ArrayList<>();
+	private List<Booking> booking = new ArrayList<>();
 	
+	private File mainfile = new File("database.json");
 	
-	private List<Flight> flights = new ArrayList<>();
-	private List<Booking> bookings = new ArrayList<>();
-	
-	private File DBFile = new File("database.json");
-	
-	public String AddFlight(String payload) {
+	public String AddFlight(String value) {
 		return "";
 	}
 	
-	public String RemoveFlight(String payload) {
+	public String RemoveFlight(String value) {
 		return "";
 	}
 	
-	public String AddBooking(String payload) {
+	public String AddBooking(String value) {
 		return "";
 	}
 	
-	public String CancelBooking(String payload) {
+	public String CancelBooking(String value) {
 		return "";
 	}
 }
