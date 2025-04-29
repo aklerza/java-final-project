@@ -22,4 +22,16 @@ public class Booking {
     public int getnumberoftickets(){
         return numberoftickets;
     }
+    public setbookingid(String bookingid){
+        this.bookingid = bookingid;
+    }
+    public setname(String name){
+        this.name = name;
+    }
+    public setflightid(String flightid){
+        this.flightid = flightid;
+    }
+    public setnumberoftickets(int numberoftickets){
+        this.numberoftickets = numberoftickets;
+    }
 }
