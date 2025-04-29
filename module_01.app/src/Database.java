@@ -23,6 +23,12 @@ public class Database{
         } catch (Exception e){System.out.println("Error! -> " + e.getMessage());}
     }
 
+    public void AddFlight(String Destination, String date, int freeSeats){
+        String flightid ="Ft" + (this.flight.size()+1);
+        this.flight.add(new Flight(flightid,Destination,date,freeSeats));
+        this.savetofile();
+    }
+    
     public String JsonValuesFlight(){
         try {
             return newmapper.writerWithDefaultPrettyPrinter().writeValueAsString(this.flight);
@@ -43,7 +49,7 @@ public class Database{
         int t=0;
         for(Flight f : this.flight){
             if(f.flightid.equals(flightid) && f.freeSeats>=numberoftickets){
-                String bookingid="" + (this.booking.size() + 1);
+                String bookingid="Bg" + (this.booking.size() + 1);
                 this.booking.add(new Booking(bookingid,name,flightid,numberoftickets));
                 f.freeSeats-=numberoftickets;
                 this.savetofile();
