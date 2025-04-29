@@ -3,7 +3,7 @@ public class Flight {
     private String destination;
     private String date;
     private int freeSeats;
-    private Flight(){}
+    public Flight(){}
     public Flight(String flightid,String destination, String date, int freeSeats){
         this.flightid = flightid;
         this.destination = destination;
@@ -19,9 +19,19 @@ public class Flight {
     public String getdate(){
         return date;
     }
-    public String getfreeSeats(){
+    public int getfreeSeats(){
         return freeSeats;
     }
-    
-    
+    public void setflightid(String flightid){
+        this.flightid = flightid;
+    }
+    public void setdestination(String destination){
+        this.destination = destination;
+    }
+    public void setdate(String date){
+        this.date = date;
+    }
+    public void setfreeSeats(int freeSeats){
+        this.freeSeats = freeSeats;
+    }
 }
