@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
-    public class Controller {
     private UserInterface ui;
     private Database db;
 
@@ -40,12 +42,10 @@ public class Controller {
     // Get flight info by ID
     public Flight getFlightById(String flightId) {
         for (Flight f : db.flights) {
-            if (f.getflightid().equals(flightId)) {
+            if (f.flightid.equals(flightId)) {
                 return f;
             }
         }
         return null;
     }
-}
-
 }
