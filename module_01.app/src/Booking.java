@@ -1,8 +1,8 @@
 public class Booking {
-    private String bookingid;
-    private String name;
-    private String flightid;
-    private int numberoftickets;
+	public String bookingid;
+	public String name;
+    public String flightid;
+    public int numberoftickets;
     public Booking(){}
     public Booking(String bookingid, String name, String flightid, int numberoftickets){
         this.bookingid = bookingid;
@@ -22,16 +22,16 @@ public class Booking {
     public int getnumberoftickets(){
         return numberoftickets;
     }
-    public setbookingid(String bookingid){
+    public void setbookingid(String bookingid){
         this.bookingid = bookingid;
     }
-    public setname(String name){
+    public void setname(String name){
         this.name = name;
     }
-    public setflightid(String flightid){
+    public void setflightid(String flightid){
         this.flightid = flightid;
     }
-    public setnumberoftickets(int numberoftickets){
+    public void setnumberoftickets(int numberoftickets){
         this.numberoftickets = numberoftickets;
     }
 }
