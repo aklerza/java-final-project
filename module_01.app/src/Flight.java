@@ -1,8 +1,8 @@
 public class Flight {
-    private String flightid;
-    private String destination;
-    private String date;
-    private int freeSeats;
+    public String flightid;
+    public String destination;
+    public String date;
+    public int freeSeats;
     public Flight(){}
     public Flight(String flightid,String destination, String date, int freeSeats){
         this.flightid = flightid;
