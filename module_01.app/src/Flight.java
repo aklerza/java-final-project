@@ -10,5 +10,28 @@ public class Flight {
         this.date = date;
         this.freeSeats = freeSeats;
     }
-    
+    public String getflightid(){
+        return flightid;
+    }
+    public String getdestination(){
+        return destination;
+    }
+    public String getdate(){
+        return date;
+    }
+    public int getfreeSeats(){
+        return freeSeats;
+    }
+    public void setflightid(String flightid){
+        this.flightid = flightid;
+    }
+    public void setdestination(String destination){
+        this.destination = destination;
+    }
+    public void setdate(String date){
+        this.date = date;
+    }
+    public void setfreeSeats(int freeSeats){
+        this.freeSeats = freeSeats;
+    }
 }
