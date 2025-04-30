@@ -11,12 +11,17 @@ public class UserInterface_swing implements UserInterface {
     private JTable flightTable;
     private DefaultTableModel tableModel;
     private Database Database;
+    private Controller controller;
     
     public UserInterface_swing(Database Database) {
     	this.Database = Database;
     	frame = new JFrame("BHOS - Flight booking system");
         frame.setSize(640, 480);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void setdamncontroller(Controller cont) {
+    	this.controller = cont;
     }
     
     private void loadFlightsToTable(Database Database) {
@@ -59,10 +64,10 @@ public class UserInterface_swing implements UserInterface {
 	        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 	    }
 
-	    buttons[0].addActionListener(e -> show_flight_info());
-	    buttons[1].addActionListener(e -> show_book_flight());
-	    buttons[2].addActionListener(e -> show_cancel_flight());
-	    buttons[3].addActionListener(e -> show_my_flights());
+	    buttons[0].addActionListener(e -> show_flight_info(this.controller));
+	    buttons[1].addActionListener(e -> show_book_flight(this.controller));
+	    buttons[2].addActionListener(e -> show_cancel_flight(this.controller));
+	    buttons[3].addActionListener(e -> show_my_flights(this.controller));
 	    buttons[4].addActionListener(e -> System.exit(0));
 
 	    frame.add(buttonPanel, BorderLayout.CENTER);
@@ -70,16 +75,16 @@ public class UserInterface_swing implements UserInterface {
 	    frame.setVisible(true);
     }
 
-    public void show_flight_info() {
+    public void show_flight_info(Controller controller) {
     	String flightID = JOptionPane.showInputDialog(frame, "flightid:");
         if (flightID != null) {
-            // look for data
-            JOptionPane.showMessageDialog(frame, "flightid: " + flightID);
+            Flight main = controller.getFlightById(flightID);
+            JOptionPane.showMessageDialog(frame, "destination: " + main.destination + "\ndate: " + main.date + "\nfree seats: " + main.freeSeats);
         }
         show_mainmenu();
     }
 
-    public void show_book_flight() {
+    public void show_book_flight(Controller controller) {
     JTextField flightIdField = new JTextField();
     JTextField nameField = new JTextField();
     JTextField ticketCountField = new JTextField();
@@ -111,7 +116,7 @@ public class UserInterface_swing implements UserInterface {
 }
 
 
-    public void show_cancel_flight() {
+    public void show_cancel_flight(Controller controller) {
     String bookingId = JOptionPane.showInputDialog(frame, "Booking ID:");
     if (bookingId != null) {
         String json = "{ \"bookingid\":\"" + bookingId + "\" }";
@@ -122,7 +127,7 @@ public class UserInterface_swing implements UserInterface {
 }
 
 
-   public void show_my_flights() {
+   public void show_my_flights(Controller controller) {
     String name = JOptionPane.showInputDialog(frame, "Your Name:");
     if (name != null) {
         List<Booking> bookings = controller.getAllBookings(name);
@@ -139,6 +144,30 @@ public class UserInterface_swing implements UserInterface {
         }
     }
     show_mainmenu();
+}
+
+@Override
+public void show_my_flights() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void show_flight_info() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void show_book_flight() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void show_cancel_flight() {
+	// TODO Auto-generated method stub
+	
 }
 
 }
