@@ -80,27 +80,36 @@ public class UserInterface_swing implements UserInterface {
     }
 
     public void show_book_flight() {
-    	JTextField flightIdField = new JTextField();
-        JTextField nameField = new JTextField();
-        JTextField ticketCountField = new JTextField();
+    JTextField flightIdField = new JTextField();
+    JTextField nameField = new JTextField();
+    JTextField ticketCountField = new JTextField();
 
-        Object[] message = {
-            "Flight ID:", flightIdField,
-            "Your Name:", nameField,
-            "Number of Tickets:", ticketCountField
-        };
+    Object[] message = {
+        "Flight ID:", flightIdField,
+        "Your Name:", nameField,
+        "Number of Tickets:", ticketCountField
+    };
 
-        int option = JOptionPane.showConfirmDialog(frame, message, "book flight", JOptionPane.OK_CANCEL_OPTION);
-        if (option == JOptionPane.OK_OPTION) {
-            // look for data
-            String flightId = flightIdField.getText();
-            String name = nameField.getText();
-            int tickets = Integer.parseInt(ticketCountField.getText());
-
-            JOptionPane.showMessageDialog(frame, "Booking flight " + flightId + " for " + name + " with " + tickets + " ticket");
+    int option = JOptionPane.showConfirmDialog(frame, message, "Book Flight", JOptionPane.OK_CANCEL_OPTION);
+    if (option == JOptionPane.OK_OPTION) {
+        String flightId = flightIdField.getText();
+        String name = nameField.getText();
+        int tickets;
+        try {
+            tickets = Integer.parseInt(ticketCountField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Please enter a valid ticket number.");
+            show_mainmenu();
+            return;
         }
-        show_mainmenu();
+
+        String json = "{ \"flightid\":\"" + flightId + "\", \"name\":\"" + name + "\", \"numberoftickets\":" + tickets + " }";
+        String response = Database.AddBooking(json);
+        JOptionPane.showMessageDialog(frame, "Response: " + response);
     }
+    show_mainmenu();
+}
+
 
     public void show_cancel_flight() {
         String bookingId = JOptionPane.showInputDialog(frame, "bookid:");
