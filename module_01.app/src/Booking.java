@@ -1,6 +1,6 @@
 public class Booking {
-	public String bookingid;
-	public String name;
+    public String bookingid;
+    public String name;
     public String flightid;
     public int numberoftickets;
     public Booking(){}
