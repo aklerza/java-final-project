@@ -122,12 +122,23 @@ public class UserInterface_swing implements UserInterface {
 }
 
 
-    public void show_my_flights() {
-    	String name = JOptionPane.showInputDialog(frame, "name:");
-        if (name != null) {
-            // look data
-            JOptionPane.showMessageDialog(frame, "name: " + name);
+   public void show_my_flights() {
+    String name = JOptionPane.showInputDialog(frame, "Your Name:");
+    if (name != null) {
+        List<Booking> bookings = controller.getAllBookings(name);
+        if (bookings.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "No bookings found.");
+        } else {
+            StringBuilder result = new StringBuilder();
+            for (Booking b : bookings) {
+                result.append("Booking ID: ").append(b.getbookingid())
+                      .append(", Flight ID: ").append(b.getflightid())
+                      .append(", Tickets: ").append(b.getnumberoftickets()).append("\n");
+            }
+            JOptionPane.showMessageDialog(frame, result.toString());
         }
-        show_mainmenu();
     }
+    show_mainmenu();
+}
+
 }
