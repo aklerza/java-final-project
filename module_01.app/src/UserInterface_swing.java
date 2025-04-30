@@ -103,13 +103,15 @@ public class UserInterface_swing implements UserInterface {
     }
 
     public void show_cancel_flight() {
-        String bookingId = JOptionPane.showInputDialog(frame, "bookid:");
-        if (bookingId != null) {
-            // look data
-            JOptionPane.showMessageDialog(frame, "bookid: " + bookingId);
-        }
-        show_mainmenu();
+    String bookingId = JOptionPane.showInputDialog(frame, "Booking ID:");
+    if (bookingId != null) {
+        String json = "{ \"bookingid\":\"" + bookingId + "\" }";
+        String response = Database.CancelBooking(json);
+        JOptionPane.showMessageDialog(frame, "Response: " + response);
     }
+    show_mainmenu();
+}
+
 
     public void show_my_flights() {
     	String name = JOptionPane.showInputDialog(frame, "name:");
